@@ -1,0 +1,22 @@
+# fortran options
+F77 = gfortran
+F77STD = -fdefault-integer-8 -w -Wno-argument-mismatch
+F77OPT = -O3 $(CNS_MALIGN_I86) -funroll-loops -ffast-math
+F77FLAGS = $(F77STD) $(F77OPT) $(EXT_F77FLAGS) $(F77BUG)
+
+# C options
+CC = gcc
+CPP = g++
+CCFLAGS = -O -DINTEGER='long int' -DCNS_ARCH_TYPE_$(CNS_ARCH_TYPE) $(EXT_CCFLAGS)
+
+# link options
+LD = gfortran
+LDFLAGS = -w $(EXT_LDFLAGS) -static -static-libgfortran -static-libgcc
+
+# utility programs
+compile-utils:
+	@ cd $(CNS_INST)/utils; \
+	  make utils F77="$(F77)"  CC="$(CC)" CPP="$(CPP)"\
+	             F77FLAGS="-w -O" CCFLAGS="-O" \
+	             F77LINK="" CCLINK="-lm" LEXLIB="fl"
+
