@@ -30,7 +30,7 @@ COPY Makefile /opt/cns_solve_1.3/instlib/machine/supported/intel-x86_64bit-linux
 
 # Compile
 RUN make install && \
+  # Find the filename of the static binary and copy to `/opt/cns_static`
   find /opt/cns_solve_1.3 -name "cns_solve-*.exe" -type f -exec cp {} /opt/cns_static \;
 
-# The binary will be available at `/opt/cns_static`
 #==================================================================
