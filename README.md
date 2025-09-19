@@ -2,12 +2,10 @@
 
 This repository contains a Dockerfile to compile a static CNS binary
 
-## Usage
+You need to et the `cns_solve_1.3_all.tar.gz` from the CNS website,
+you will need to make a request and fill a form: <https://cns-online.org/cns_request/>
 
-- Get the `cns_solve_1.3_all.tar.gz` from the CNS website,
-  you will need to make a request and fill a form: <https://cns-online.org/cns_request/>
-
-This is all you need.
+Put this file in the same directory as the Dockerfile.
 
 To run the builder and copy the executable to your current working
 directory, follow the commands below:
@@ -19,7 +17,7 @@ docker build -t cns-compiler .
 # Create a container from this image
 docker create --name cns-temp cns-compiler
 
-# Copy the CNS binary from the builder container to your current working directory
+# Copy the CNS binary from the builder to your working directory
 docker cp cns-temp/opt/cns_static ./cns
 
 # Cleanup the temporary container
